@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>♡ 23 岁生日快乐 ♡</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>💗</text></svg>">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden}
+body{font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif}
+.scene{position:fixed;inset:0;overflow:hidden;touch-action:none;user-select:none;-webkit-user-select:none;cursor:default}
+
+/* ===== 梦幻背景 ===== */
+.bg{position:absolute;inset:0;z-index:0;
+  background:linear-gradient(160deg,#ffeef4 0%,#ffd9e7 30%,#f6d7f5 65%,#dde6ff 100%);
+  background-size:200% 200%;animation:bgShift 16s ease-in-out infinite alternate}
+@keyframes bgShift{from{background-position:0% 0%}to{background-position:100% 100%}}
+.bokeh{position:absolute;border-radius:50%;filter:blur(60px);opacity:.5;z-index:1;
+  animation:blobFloat 12s ease-in-out infinite alternate}
+.b1{width:420px;height:420px;background:#ffb8d1;top:-120px;left:-100px}
+.b2{width:380px;height:380px;background:#ffd9a8;bottom:-100px;right:-80px;animation-delay:-4s}
+.b3{width:300px;height:300px;background:#cdbcff;top:32%;right:10%;animation-delay:-8s;opacity:.4}
+@keyframes blobFloat{from{transform:translate(0,0) scale(1)}to{transform:translate(40px,-30px) scale(1.08)}}
+.stars{position:absolute;top:0;left:0;width:2px;height:2px;border-radius:50%;z-index:1;
+  animation:twinkle 3s ease-in-out infinite alternate}
+@keyframes twinkle{from{opacity:.5;filter:brightness(.8)}to{opacity:1;filter:brightness(1.25)}}
+
+/* ===== 气球 ===== */
+.balloon{position:absolute;z-index:2;animation:bob 5s ease-in-out infinite alternate;
+  filter:drop-shadow(0 8px 12px rgba(214,106,143,.25))}
+.bl1{left:5%;bottom:16%;width:88px}
+.bl2{left:12.5%;bottom:31%;width:66px;animation-delay:-2.5s}
+.br1{right:5%;bottom:22%;width:78px;animation-delay:-1.2s}
+@keyframes bob{from{transform:translateY(0) rotate(-2deg)}to{transform:translateY(-16px) rotate(2.5deg)}}
+
+/* ===== 霓虹灯牌 ===== */
+.neon-wrap{position:absolute;top:4%;left:0;right:0;text-align:center;pointer-events:none;z-index:3}
+.neon{font-family:"Brush Script MT","Segoe Script",cursive;
+  font-size:clamp(44px,6.5vw,86px);color:#fff7fa;transform:rotate(-3deg);
+  text-shadow:0 0 6px #fff,0 0 16px #ff9ec7,0 0 34px #ff6fa5,0 0 60px #ff4d94;
+  animation:flicker 4.5s linear infinite}
+@keyframes flicker{0%,100%{opacity:1}40%{opacity:1}41%{opacity:.55}42%{opacity:1}
+  44%{opacity:.7}45%{opacity:1}68%{opacity:1}69%{opacity:.85}70%{opacity:1}}
+.neon-sub{margin-top:8px;font-family:"Yuanti SC","YouYuan","PingFang SC","Microsoft YaHei",sans-serif;
+  font-size:clamp(13px,1.6vw,17px);color:#a2506f;letter-spacing:3px}
+
+/* ===== 拍立得舞台 ===== */
+.stage{position:absolute;inset:0;z-index:4;display:flex;align-items:center;justify-content:center;perspective:1100px}
+.floaty{animation:stageFloat 7s ease-in-out infinite alternate}
+@keyframes stageFloat{from{transform:translateY(0)}to{transform:translateY(-12px)}}
+.tilt{transform-style:preserve-3d;will-change:transform}
+.polaroid{position:relative;background:#fffefb;padding:16px 16px 62px;border-radius:8px;
+  transform:rotate(-2deg);
+  box-shadow:0 24px 60px rgba(190,90,130,.35),0 4px 14px rgba(190,90,130,.2)}
+.photo-box{position:relative;overflow:hidden;border-radius:4px;width:min(72vw,52vh)}
+.photo{display:block;width:100%;animation:kb 18s ease-in-out infinite alternate}
+@keyframes kb{from{transform:scale(1.05) translate(0,0)}to{transform:scale(1.16) translate(-2%,-2.5%)}}
+.shine{position:absolute;top:-20%;bottom:-20%;width:36%;left:0;pointer-events:none;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);
+  transform:translateX(-240%) skewX(-18deg);animation:shine 7s ease-in-out infinite}
+@keyframes shine{0%,55%{transform:translateX(-240%) skewX(-18deg)}75%,100%{transform:translateX(430%) skewX(-18deg)}}
+.caption{position:absolute;left:0;right:0;bottom:14px;text-align:center;
+  font-family:"Yuanti SC","YouYuan","Comic Sans MS",sans-serif;
+  font-size:20px;color:#d66a8f;letter-spacing:2px}
+
+/* ===== 贴纸装饰 ===== */
+.sticker{position:absolute;z-index:5;animation:wob 3s ease-in-out infinite alternate;
+  filter:drop-shadow(0 3px 6px rgba(180,80,120,.3));pointer-events:none}
+@keyframes wob{from{transform:rotate(-6deg) translateY(0)}to{transform:rotate(6deg) translateY(-5px)}}
+.st-star1{top:-24px;left:-24px;width:56px}
+.st-heart1{top:-18px;right:-14px;width:46px;animation-delay:-1s}
+.st-heart2{top:36%;left:-30px;width:30px;animation-delay:-.6s}
+.st-star2{bottom:52px;right:-26px;width:38px;animation-delay:-2s}
+.st-flower1{bottom:-16px;left:-20px;font-size:42px}
+.st-spark{top:62%;right:-24px;width:26px;animation-delay:-1.6s}
+.badge23{top:-26px;right:16%;width:54px;height:54px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#ffe9a8,#f7b733);
+  color:#7a4d00;font:700 24px "Comic Sans MS",sans-serif;
+  display:flex;align-items:center;justify-content:center;
+  border:2px dashed rgba(255,255,255,.75);box-shadow:0 4px 10px rgba(190,130,20,.35);
+  animation-delay:-.3s}
+
+/* ===== 小蛋糕 ===== */
+.cake{position:absolute;right:3.5%;bottom:2.5%;width:190px;z-index:5;
+  filter:drop-shadow(0 10px 18px rgba(150,70,110,.3))}
+.flame{transform-box:fill-box;transform-origin:50% 100%;animation:flick .22s ease-in-out infinite alternate}
+@keyframes flick{from{transform:scale(1,1) rotate(-3deg)}to{transform:scale(.88,1.14) rotate(3deg)}}
+.glowF{animation:glowP 1.2s ease-in-out infinite alternate}
+@keyframes glowP{from{opacity:.25}to{opacity:.55}}
+
+/* ===== 粒子 ===== */
+#fx{position:absolute;inset:0;pointer-events:none;z-index:9}
+.rise{position:absolute;bottom:-50px;animation:riseUp var(--d) linear forwards;will-change:transform}
+.riseInner{display:block;animation:swayX var(--sd) ease-in-out infinite alternate}
+@keyframes riseUp{0%{transform:translateY(0);opacity:0}8%{opacity:1}80%{opacity:1}
+  100%{transform:translateY(-115vh);opacity:0}}
+@keyframes swayX{from{transform:translateX(calc(var(--sw) * -1)) rotate(-10deg)}
+  to{transform:translateX(var(--sw)) rotate(10deg)}}
+.burst{position:absolute;animation:burstOut .9s cubic-bezier(.15,.6,.4,1) forwards}
+@keyframes burstOut{0%{transform:translate(0,0) scale(.4) rotate(0);opacity:1}
+  100%{transform:translate(var(--tx),var(--ty)) scale(1.1) rotate(var(--rot));opacity:0}}
+.trail{position:absolute;animation:trailFade .7s ease-out forwards}
+@keyframes trailFade{0%{transform:scale(.4);opacity:1}100%{transform:scale(1.3) translateY(-14px);opacity:0}}
+
+/* ===== 提示 ===== */
+.pill{background:rgba(255,255,255,.6);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  border-radius:999px;padding:10px 16px;color:#a2506f;font-size:14px;letter-spacing:1px;
+  border:1px solid rgba(255,255,255,.7);box-shadow:0 4px 14px rgba(190,90,130,.18)}
+.hint{position:absolute;left:16px;bottom:16px;z-index:6;pointer-events:none}
+
+@media (max-width:700px){
+  .cake{width:130px;right:2%}
+  .bl2{display:none}
+  .neon-sub{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.01s !important;animation-iteration-count:1 !important}
+}
+</style>
+</head>
+<body>
+<div class="scene" id="scene">
+  <div class="bg"></div>
+  <div class="bokeh b1"></div>
+  <div class="bokeh b2"></div>
+  <div class="bokeh b3"></div>
+  <div class="stars" id="stars"></div>
+
+  <!-- 气球 -->
+  <div class="balloon bl1">
+    <svg viewBox="0 0 80 110">
+      <defs><radialGradient id="bg1" cx="35%" cy="30%"><stop offset="0%" stop-color="#ffd1e0"/><stop offset="100%" stop-color="#ff8fb5"/></radialGradient></defs>
+      <path d="M40,100 C36,88 44,80 40,72" stroke="#c98ba0" stroke-width="1.6" fill="none"/>
+      <path d="M36,64 L44,64 L40,72 Z" fill="#e87d9f"/>
+      <ellipse cx="40" cy="34" rx="30" ry="34" fill="url(#bg1)"/>
+      <ellipse cx="30" cy="22" rx="8" ry="12" fill="rgba(255,255,255,.55)" transform="rotate(-20 30 22)"/>
+    </svg>
+  </div>
+  <div class="balloon bl2">
+    <svg viewBox="0 0 80 110">
+      <defs><radialGradient id="bg2" cx="35%" cy="30%"><stop offset="0%" stop-color="#fff3d0"/><stop offset="100%" stop-color="#ffc95e"/></radialGradient></defs>
+      <path d="M40,100 C44,88 36,80 40,72" stroke="#d1a66a" stroke-width="1.6" fill="none"/>
+      <path d="M36,64 L44,64 L40,72 Z" fill="#e8a84c"/>
+      <ellipse cx="40" cy="34" rx="30" ry="34" fill="url(#bg2)"/>
+      <ellipse cx="30" cy="22" rx="8" ry="12" fill="rgba(255,255,255,.55)" transform="rotate(-20 30 22)"/>
+    </svg>
+  </div>
+  <div class="balloon br1">
+    <svg viewBox="0 0 80 110">
+      <defs><radialGradient id="bg3" cx="35%" cy="30%"><stop offset="0%" stop-color="#eee6ff"/><stop offset="100%" stop-color="#b79df2"/></radialGradient></defs>
+      <path d="M40,100 C36,88 44,80 40,72" stroke="#a48ec9" stroke-width="1.6" fill="none"/>
+      <path d="M36,64 L44,64 L40,72 Z" fill="#9d83d9"/>
+      <ellipse cx="40" cy="34" rx="30" ry="34" fill="url(#bg3)"/>
+      <ellipse cx="30" cy="22" rx="8" ry="12" fill="rgba(255,255,255,.55)" transform="rotate(-20 30 22)"/>
+    </svg>
+  </div>
+
+  <!-- 霓虹灯牌 -->
+  <div class="neon-wrap">
+    <div class="neon">Happy Birthday ♡</div>
+    <div class="neon-sub">今 天 23 岁 啦 · 愿 被 爱 与 星 光 包 围</div>
+  </div>
+
+  <!-- 拍立得照片 -->
+  <div class="stage">
+    <div class="floaty">
+      <div class="tilt" id="tilt">
+        <div class="polaroid">
+          <div class="photo-box">
+            <img class="photo" src="photo.jpg" alt="23 岁生日照">
+            <div class="shine"></div>
+          </div>
+          <div class="caption">23 岁，继续闪闪发光 ♡</div>
+          <div class="sticker st-star1"><svg viewBox="0 0 24 24"><path d="M12 0 L14.6 9.4 24 12 14.6 14.6 12 24 9.4 14.6 0 12 9.4 9.4 Z" fill="#ffd166"/></svg></div>
+          <div class="sticker st-heart1"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#ff7aa5"/></svg></div>
+          <div class="sticker st-heart2"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#ffb3c8"/></svg></div>
+          <div class="sticker st-star2"><svg viewBox="0 0 24 24"><path d="M12 0 L14.6 9.4 24 12 14.6 14.6 12 24 9.4 14.6 0 12 9.4 9.4 Z" fill="#fff"/></svg></div>
+          <div class="sticker st-flower1">🌸</div>
+          <div class="sticker st-spark"><svg viewBox="0 0 24 24"><path d="M12 0 L14.6 9.4 24 12 14.6 14.6 12 24 9.4 14.6 0 12 9.4 9.4 Z" fill="#ffd166"/></svg></div>
+          <div class="sticker badge23">23</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 小蛋糕（数字蜡烛 2 和 3） -->
+  <div class="cake">
+    <svg viewBox="0 0 200 180">
+      <defs>
+        <radialGradient id="flameG" cx="50%" cy="35%"><stop offset="0%" stop-color="#fff3b0"/><stop offset="100%" stop-color="#ff9d2e"/></radialGradient>
+      </defs>
+      <ellipse cx="100" cy="166" rx="86" ry="10" fill="#ffffff" opacity=".9"/>
+      <rect x="35" y="108" width="130" height="52" rx="10" fill="#ffc2d6"/>
+      <path d="M35,118 q8,16 16,0 q8,16 16,0 q8,16 16,0 q8,16 16,0 q8,16 16,0 q8,16 16,0 q8,16 16,0 q8,16 16,0 L165,118 L165,108 L35,108 Z" fill="#fff0f5"/>
+      <rect x="58" y="72" width="84" height="40" rx="9" fill="#fff0f5"/>
+      <path d="M58,82 q7,13 14,0 q7,13 14,0 q7,13 14,0 q7,13 14,0 q7,13 14,0 q7,13 14,0 L142,82 L142,72 L58,72 Z" fill="#ffc2d6"/>
+      <g fill="#ff8fb5">
+        <rect x="52" y="134" width="7" height="2.6" rx="1.3" transform="rotate(24 55 135)"/>
+        <rect x="80" y="142" width="7" height="2.6" rx="1.3" transform="rotate(-18 83 143)"/>
+        <rect x="120" y="136" width="7" height="2.6" rx="1.3" transform="rotate(30 123 137)"/>
+        <rect x="140" y="146" width="7" height="2.6" rx="1.3" transform="rotate(-24 143 147)"/>
+      </g>
+      <path d="M100 148 l-1.8-1.6 c-2.6-2.3-4.2-3.8-4.2-5.7 0-1.5 1.2-2.7 2.7-2.7 .9 0 1.7.4 2.3 1 .6-.6 1.4-1 2.3-1 1.5 0 2.7 1.2 2.7 2.7 0 1.9-1.6 3.4-4.2 5.7 Z" fill="#ff6f9f"/>
+      <rect x="82" y="50" width="6" height="24" rx="2" fill="#ffd166"/>
+      <rect x="112" y="50" width="6" height="24" rx="2" fill="#ffd166"/>
+      <text x="85" y="48" text-anchor="middle" font-family="Comic Sans MS" font-weight="bold" font-size="26" fill="#f7b733" stroke="#d9861c" stroke-width=".6">2</text>
+      <text x="115" y="48" text-anchor="middle" font-family="Comic Sans MS" font-weight="bold" font-size="26" fill="#f7b733" stroke="#d9861c" stroke-width=".6">3</text>
+      <circle class="glowF" cx="85" cy="36" r="11" fill="#ffd166"/>
+      <circle class="glowF" cx="115" cy="36" r="11" fill="#ffd166" style="animation-delay:-.6s"/>
+      <ellipse class="flame" cx="85" cy="36" rx="5" ry="8" fill="url(#flameG)"/>
+      <ellipse class="flame" cx="115" cy="36" rx="5" ry="8" fill="url(#flameG)" style="animation-delay:-.11s"/>
+    </svg>
+  </div>
+
+  <div class="hint pill">点一点撒爱心 ♡ · 移动鼠标晃晃照片</div>
+  <div id="fx"></div>
+</div>
+
+<script>
+(function(){
+  var fx = document.getElementById('fx');
+  var tilt = document.getElementById('tilt');
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* 背景星星 */
+  var stars = document.getElementById('stars');
+  var ss = [];
+  for(var i=0;i<110;i++){
+    var sx=(Math.random()*100).toFixed(1), sy=(Math.random()*100).toFixed(1);
+    var sr=(Math.random()*1.2+0.4).toFixed(1), sa=(Math.random()*0.55+0.35).toFixed(2);
+    var col = Math.random()<0.3 ? '255,209,102' : '255,255,255';
+    ss.push(sx+'vw '+sy+'vh 0 '+sr+'px rgba('+col+','+sa+')');
+  }
+  stars.style.boxShadow = ss.join(',');
+
+  /* SVG 生成器 */
+  function heartSVG(color,size){
+    return '<svg viewBox="0 0 24 24" width="'+size+'" height="'+size+'"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="'+color+'"/></svg>';
+  }
+  function starSVG(color,size){
+    return '<svg viewBox="0 0 24 24" width="'+size+'" height="'+size+'"><path d="M12 0 L14.6 9.4 24 12 14.6 14.6 12 24 9.4 14.6 0 12 9.4 9.4 Z" fill="'+color+'"/></svg>';
+  }
+  var palette = ['#ff7aa5','#ffb3c8','#ffd166','#ffffff','#f7a8b8','#ffc9dd'];
+  function pick(a){ return a[Math.floor(Math.random()*a.length)]; }
+  function rand(a,b){ return a + Math.random()*(b-a); }
+  function makePiece(size){
+    var r = Math.random();
+    if(r < 0.55) return heartSVG(pick(['#ff7aa5','#ffb3c8','#f7a8b8','#ffc9dd']), size);
+    if(r < 0.85) return starSVG(pick(['#ffd166','#ffc95e']), size);
+    return starSVG('#ffffff', size);
+  }
+
+  /* 上飘的爱心与星星 */
+  function spawnRise(){
+    if(fx.childElementCount > 110) return;
+    var el = document.createElement('div');
+    el.className = 'rise';
+    el.style.left = rand(2,97)+'vw';
+    el.style.setProperty('--d', rand(5.5,9.5).toFixed(2)+'s');
+    el.style.setProperty('--sw', rand(16,48).toFixed(0)+'px');
+    var inner = document.createElement('span');
+    inner.className = 'riseInner';
+    inner.style.setProperty('--sd', rand(1.5,2.8).toFixed(2)+'s');
+    inner.innerHTML = makePiece(rand(13,34).toFixed(0));
+    el.appendChild(inner);
+    el.onanimationend = function(e){ if(e.target===el) el.remove(); };
+    fx.appendChild(el);
+  }
+  if(!reduced){
+    setInterval(spawnRise, 420);
+    for(var k=0;k<8;k++){ setTimeout(spawnRise, k*140); }
+  }
+
+  /* 点击爆发 */
+  function burst(x,y){
+    for(var i=0;i<12;i++){
+      var el = document.createElement('div');
+      el.className = 'burst';
+      var ang = Math.random()*Math.PI*2;
+      var dist = rand(60,175);
+      el.style.left = x+'px';
+      el.style.top = y+'px';
+      el.style.setProperty('--tx', (Math.cos(ang)*dist).toFixed(0)+'px');
+      el.style.setProperty('--ty', (Math.sin(ang)*dist - 45).toFixed(0)+'px');
+      el.style.setProperty('--rot', rand(-170,170).toFixed(0)+'deg');
+      el.innerHTML = makePiece(rand(11,24).toFixed(0));
+      el.onanimationend = function(){ this.remove(); };
+      fx.appendChild(el);
+    }
+  }
+  window.addEventListener('pointerdown', function(e){ burst(e.clientX, e.clientY); });
+
+  /* 鼠标星光尾巴 */
+  var lastTrail = 0;
+  window.addEventListener('pointermove', function(e){
+    var now = performance.now();
+    if(now - lastTrail < 55) return;
+    lastTrail = now;
+    if(fx.childElementCount > 140) return;
+    var el = document.createElement('div');
+    el.className = 'trail';
+    el.style.left = (e.clientX-7)+'px';
+    el.style.top = (e.clientY-7)+'px';
+    el.innerHTML = starSVG(Math.random()<0.5?'#ffffff':'#ffd166', rand(8,15).toFixed(0));
+    el.onanimationend = function(){ this.remove(); };
+    fx.appendChild(el);
+  });
+
+  /* 照片随鼠标倾斜 */
+  var trx=0, try_=0, crx=0, cry=0;
+  window.addEventListener('pointermove', function(e){
+    var nx = (e.clientX/window.innerWidth - .5)*2;
+    var ny = (e.clientY/window.innerHeight - .5)*2;
+    try_ = nx*7; trx = -ny*6;
+  });
+  function loop(){
+    crx += (trx-crx)*0.06;
+    cry += (try_-cry)*0.06;
+    tilt.style.transform = 'rotateX('+crx.toFixed(2)+'deg) rotateY('+cry.toFixed(2)+'deg)';
+    requestAnimationFrame(loop);
+  }
+  loop();
+})();
+</script>
+</body>
+</html>
