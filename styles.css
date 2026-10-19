@@ -111,3 +111,67 @@ body.bottom-tools-open .reader-controls{transform:translateX(-50%);opacity:1;vis
   .back-restart svg{width:12px;height:12px;flex:none}
   .back-quote span{font-size:max(11px,2cqw)}
 }
+
+/* Give the contents page distinct, non-overlapping title and chapter areas. */
+.contents-intro{position:absolute;top:12%;left:8%;right:8%;height:22%;display:grid;grid-template-columns:minmax(0,1fr) 17cqw;align-items:center;column-gap:3cqw}
+.contents-title-block{min-width:0}
+.contents-heading{position:static;font-size:12cqw;line-height:.98;letter-spacing:-.035em}
+.contents-sub{position:static;margin-top:1.7cqw;font-size:1.8cqw;line-height:1.6;letter-spacing:.2cqw}
+.contents-stamp{position:static;width:16cqw;height:16cqw;justify-self:end;font-size:1.25cqw;letter-spacing:.2cqw;transform:rotate(12deg)}
+.contents-stamp span{font-size:6.2cqw}
+.printed-contents{top:37%;bottom:15%;display:flex;flex-direction:column;justify-content:space-between;gap:1.2cqw}
+.printed-chapter{min-height:0;grid-template-columns:7cqw minmax(0,1fr) 6cqw;gap:2.5cqw;padding:1.6cqw 0 0}
+.printed-chapter>span:first-child{font-size:4.2cqw}
+.printed-chapter strong{font-size:3.8cqw;line-height:1.1}
+.printed-chapter small{font-size:1.55cqw;line-height:1.35;letter-spacing:.08cqw;padding-top:.7cqw}
+.printed-chapter>span:last-child{font-size:2.7cqw;text-align:right}
+.contents-foot{bottom:8%;font-size:1.5cqw;line-height:1.75}
+.diary-copy{bottom:6%;max-width:68%;font-size:1.9cqw}
+.diary-quote{display:block;margin-top:1.8cqw;font-size:3.1cqw;line-height:1.45;letter-spacing:.45cqw;color:#986d63}
+
+/* Let the closed cover, open spread, and turning sheet move as one book. */
+@property --page-w{syntax:'<length>';inherits:true;initial-value:420px}
+@property --page-h{syntax:'<length>';inherits:true;initial-value:578px}
+:root{transition:--page-w var(--motion) cubic-bezier(.22,.72,.24,1),--page-h var(--motion) cubic-bezier(.22,.72,.24,1)}
+.book{transition:width var(--motion) cubic-bezier(.22,.72,.24,1)}
+.turn-sheet{animation-timing-function:cubic-bezier(.42,.04,.18,1)}
+.turn-sheet:not(.backwards){animation-name:turn-forward-realistic}
+.turn-sheet.backwards{animation-name:turn-back-realistic}
+.turn-face:after{animation:page-turn-shadow var(--motion) ease both}
+.turn-sheet.cover-forward,.turn-sheet.back-cover-backward{left:calc(100% - var(--page-w))}
+.turn-sheet.cover-backward{left:0}
+.turn-sheet.close-forward{left:50%;animation-name:turn-close-forward}
+@keyframes turn-forward-realistic{
+  0%{transform:rotateY(0) translateZ(0)}
+  12%{transform:rotateY(-9deg) translateZ(5px)}
+  48%{transform:rotateY(-88deg) translateZ(18px)}
+  82%{transform:rotateY(-166deg) translateZ(7px)}
+  100%{transform:rotateY(-180deg) translateZ(0)}
+}
+@keyframes turn-back-realistic{
+  0%{transform:rotateY(0) translateZ(0)}
+  12%{transform:rotateY(9deg) translateZ(5px)}
+  48%{transform:rotateY(88deg) translateZ(18px)}
+  82%{transform:rotateY(166deg) translateZ(7px)}
+  100%{transform:rotateY(180deg) translateZ(0)}
+}
+@keyframes turn-close-forward{
+  0%{transform:rotateY(0) translateZ(0)}
+  12%{transform:rotateY(-9deg) translateZ(5px)}
+  48%{transform:rotateY(-88deg) translateZ(18px) translateX(-10%)}
+  82%{transform:rotateY(-166deg) translateZ(7px) translateX(-42%)}
+  100%{transform:rotateY(-180deg) translateZ(0) translateX(-50%)}
+}
+@keyframes page-turn-shadow{
+  0%,100%{opacity:.18;box-shadow:inset 0 0 18px #00000010}
+  24%{opacity:.38;box-shadow:inset 0 0 28px #00000024}
+  50%{opacity:.72;box-shadow:inset 0 0 42px #00000035}
+  78%{opacity:.34;box-shadow:inset 0 0 26px #00000020}
+}
+@media(prefers-reduced-motion:reduce){
+  :root{transition:none}
+  .book{transition:none}
+  .turn-sheet{animation-name:turn-forward;animation-timing-function:ease}
+  .turn-sheet.backwards{animation-name:turn-back}
+  .turn-face:after{animation:none}
+}

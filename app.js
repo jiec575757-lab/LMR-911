@@ -47,8 +47,8 @@ const pageDefinitions = [
       <div class="cover-colophon"><span class="cover-corner">NOT FOR SALE · ONLY FOR ME</span><span class="cover-barcode" aria-hidden="true"></span></div>
     </div>`],
   ['contents-page', '目录 / CONTENTS', () => `
-    ${meta('THE PERSONAL ISSUE', 'VOL. 01')}<h2 class="contents-heading">A little<br>of <em>me.</em></h2><div class="contents-sub">关于我，也关于生活。</div>
-    <div class="contents-stamp"><div>INDEPENDENT<span>01</span>PERSONAL ISSUE</div></div>
+    ${meta('THE PERSONAL ISSUE', 'VOL. 01')}<div class="contents-intro"><div class="contents-title-block"><h2 class="contents-heading">A little<br>of <em>me.</em></h2><div class="contents-sub">关于我，也关于生活。</div></div>
+    <div class="contents-stamp"><div>INDEPENDENT<span>01</span>PERSONAL ISSUE</div></div></div>
     <div class="printed-contents">${chapters.map(c => `<button class="printed-chapter" data-goto="${c.page}" aria-label="阅读${c.cn}"><span>${c.num}</span><span><strong>${c.title}</strong><small>${c.cn}</small></span><span>${String(c.page).padStart(2,'0')}</span></button>`).join('')}</div>
     <p class="contents-foot">不是每一个瞬间都需要被定义。<br>有些，只要被好好记住。</p>${folio(1, 'CONTENTS')}`],
   ['nanjing-opener', '南京 / CITY POETRY', () => `${photograph('nanjing-04','full-bleed')}${shade}${meta('CHAPTER 01', 'NANJING / 南京')}<h2 class="large-city">City<br><em>poetry.</em><span class="city-cn">梧 桐 写 给 城 市 的 诗</span></h2><div class="opener-bottom">Somewhere,<br>feeling alive.<p>风吹过，刚好是喜欢的模样。</p></div><span class="opener-number">01</span>${folio(2, 'THE CITY EDIT')}`],
@@ -58,7 +58,7 @@ const pageDefinitions = [
   ['nature-page', '河南 / A LITTLE BRAVER', () => `${meta('HENAN / THE OPEN AIR')}${photograph('henan-01','nature-landscape')}${photograph('henan-02','nature-adventure')}${photograph('henan-03','nature-square')}<h2 class="nature-title"><span>COLLECT EXPERIENCES, NOT THINGS.</span>A little<br><em>braver.</em></h2><p class="nature-label">有时候，勇敢只是向前迈一步。<br>然后就能看见，另一种风景。<b>↗</b></p>${folio(6, 'BREATHE / WANDER / FEEL')}`],
   ['silence-page', '河南 / SOUND OF SILENCE', () => `${meta('HENAN / WATER & LIGHT')}${photograph('henan-05','silence-main')}${photograph('henan-06','silence-detail')}<h2 class="silence-title">Sound of<br><em>silence.</em></h2><p class="silence-vertical">让世界大一点，<br>让心事小一点。</p><span class="silence-cap">SMALL IN THE WORLD. FULL OF WONDER.</span>${folio(7, 'A LETTER FROM THE MOUNTAINS')}`],
   ['life-opener', '生活 / SOFT HOURS', () => `${photograph('life-01','full-bleed')}${shade}${meta('CHAPTER 03','EVERYDAY / 生活')}<h2 class="life-title">Soft<br><em>hours.</em></h2><p class="life-subtitle">没什么特别，<br>就是很喜欢这一刻。</p>${folio(8, 'THE EVERYDAY EDIT')}`],
-  ['life-notebook', '生活 / A PRIVATE DIARY', () => `${meta('A PRIVATE DIARY','NO OCCASION NEEDED.')}<span class="diary-date">SOME LITTLE THINGS / 日常私语</span><h2 class="diary-heading">Ordinary,<br><em>but mine.</em></h2>${photograph('life-02','diary-one')}${photograph('life-04','diary-three')}${photograph('life-03','diary-two')}<span class="diary-tape"></span><p class="diary-copy">允许日子慢一点，<br>也允许自己，什么都不做。</p><span class="diary-flower">✳</span>${folio(9, 'A SOFT KIND OF BEAUTIFUL')}`],
+  ['life-notebook', '生活 / A PRIVATE DIARY', () => `${meta('A PRIVATE DIARY','NO OCCASION NEEDED.')}<span class="diary-date">SOME LITTLE THINGS / 日常私语</span><h2 class="diary-heading">Ordinary,<br><em>but mine.</em></h2>${photograph('life-02','diary-one')}${photograph('life-04','diary-three')}${photograph('life-03','diary-two')}<span class="diary-tape"></span><p class="diary-copy">允许日子慢一点，<br>也允许自己，什么都不做。<span class="diary-quote">此时情绪此时天<br>无事小神仙</span></p><span class="diary-flower">✳</span>${folio(9, 'A SOFT KIND OF BEAUTIFUL')}`],
   ['birthday-opener', '生日 / BORN TO BLOOM', () => `${photograph('birthday-01','full-bleed')}${shade}${meta('CHAPTER 04','BIRTHDAY / 生日')}<h2 class="birthday-title">Born to<br><em>bloom.</em></h2><span class="birthday-roundel">23</span><p class="birthday-sub">新的一岁。<br>继续热烈，继续闪耀。</p>${folio(10, 'THE CELEBRATION EDIT')}`],
   ['birthday-detail-page', '生日 / ALL THAT GLOWS', () => `${meta('BIRTHDAY / IN FULL BLOOM')}${photograph('birthday-02','birthday-detail-one')}${photograph('birthday-05','birthday-detail-two')}<h2 class="birthday-detail-heading">All that<br><em>glows.</em></h2><span class="birthday-spark">✧</span><p class="birthday-detail-cap">花，烛光，<br>漂亮的裙摆。<br><br>今天，<br>为自己盛装。</p>${folio(11, 'DRESS UP FOR YOURSELF')}`],
   ['birthday-film', '生日 / MAKE A WISH', () => `${meta('BIRTHDAY / THE CONTACT SHEET')}${photograph('birthday-04','birthday-wide')}${photograph('birthday-06','birthday-strip')}${photograph('birthday-03','birthday-selfies')}<h2 class="birthday-film-title">Make a wish.<br><em>Keep the feeling.</em></h2><div class="birthday-film-caption"><span>CANDLES OUT. HEART FULL.</span><span>把快乐，留得久一点。</span></div>${folio(12, 'A NIGHT TO REMEMBER')}`],
@@ -177,14 +177,16 @@ function turnTo(rawIndex, animate = true) {
     frontIndex = previous; backIndex = target;
     className = forward ? 'single-forward' : 'backwards single-back';
   } else if (previous === 0) {
-    frontIndex = 0; backIndex = 1; className = '';
+    frontIndex = 0; backIndex = 1; className = 'cover-forward';
     base.innerHTML = '<article class="paper" aria-hidden="true"></article>'+paper(2);
   } else if (target === 0) {
-    frontIndex = 1; backIndex = 0; className = 'backwards';
+    frontIndex = 1; backIndex = 0; className = 'backwards cover-backward';
+    base.innerHTML = visiblePages(previous).map(paper).join('');
   } else if (target === 15) {
-    frontIndex = 14; backIndex = 15; className = 'single-forward';
+    frontIndex = 14; backIndex = 15; className = 'close-forward';
+    base.innerHTML = visiblePages(previous).map(paper).join('');
   } else if (previous === 15) {
-    frontIndex = 15; backIndex = 14; className = 'backwards';
+    frontIndex = 15; backIndex = 14; className = 'backwards back-cover-backward';
   } else {
     frontIndex = forward ? previous+1 : previous;
     backIndex = forward ? target : target+1;
