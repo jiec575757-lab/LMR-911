@@ -119,7 +119,7 @@ body.bottom-tools-open .reader-controls{transform:translateX(-50%);opacity:1;vis
 .contents-sub{position:static;margin-top:1.7cqw;font-size:1.8cqw;line-height:1.6;letter-spacing:.2cqw}
 .contents-stamp{position:static;width:16cqw;height:16cqw;justify-self:end;font-size:1.25cqw;letter-spacing:.2cqw;transform:rotate(12deg)}
 .contents-stamp span{font-size:6.2cqw}
-.printed-contents{top:37%;bottom:15%;display:flex;flex-direction:column;justify-content:space-between;gap:1.2cqw}
+.printed-contents{top:37%;bottom:22%;display:flex;flex-direction:column;justify-content:space-between;gap:1.2cqw}
 .printed-chapter{min-height:0;grid-template-columns:7cqw minmax(0,1fr) 6cqw;gap:2.5cqw;padding:1.6cqw 0 0}
 .printed-chapter>span:first-child{font-size:4.2cqw}
 .printed-chapter strong{font-size:3.8cqw;line-height:1.1}
