@@ -129,6 +129,23 @@ body.bottom-tools-open .reader-controls{transform:translateX(-50%);opacity:1;vis
 .diary-copy{bottom:6%;max-width:68%;font-size:1.9cqw}
 .diary-quote{display:block;margin-top:1.8cqw;font-size:3.1cqw;line-height:1.45;letter-spacing:.45cqw;color:#986d63}
 
+/* A larger white-linen portrait anchors the four-photo diary. */
+.life-notebook .diary-date{left:7%;top:10%;font-size:1.5cqw;letter-spacing:.3cqw}
+.life-notebook .diary-heading{left:7%;top:15%;font-size:9.2cqw;line-height:.98;letter-spacing:-.35cqw}
+.life-notebook .diary-copy{left:auto;right:7%;top:14%;bottom:auto;width:29%;max-width:none;font-size:1.5cqw;line-height:1.8;letter-spacing:.1cqw}
+.life-notebook .diary-quote{margin-top:1.8cqw;font-size:2.6cqw;line-height:1.6;letter-spacing:.15cqw}
+.life-notebook .diary-feature,.life-notebook .diary-one,.life-notebook .diary-two,.life-notebook .diary-three{border:1.2cqw solid #fffaf1;border-bottom-width:3.5cqw;box-shadow:.7cqw 1cqw 2.8cqw #7b5f4b24;background:#fffaf1;overflow:visible}
+.life-notebook .photo img{object-fit:contain}
+.life-notebook .diary-feature{left:7%;top:32%;width:50%;height:38%;transform:rotate(-2.5deg)}
+.life-notebook .diary-feature:after{content:'slow mornings, soft light.';position:absolute;bottom:-2.7cqw;left:0;right:0;text-align:center;font:italic 1.6cqw var(--serif);color:#986d63}
+.life-notebook .diary-one{left:auto;right:7%;top:32%;width:30%;height:26%;transform:rotate(3deg)}
+.life-notebook .diary-three{right:7%;top:62%;width:30%;height:26%;transform:rotate(-3deg)}
+.life-notebook .diary-two{left:7%;right:auto;top:74%;width:50%;height:19%;transform:rotate(2deg)}
+.life-notebook .diary-two img{object-fit:cover;object-position:45% 35%}
+.life-notebook .diary-one:after,.life-notebook .diary-two:after,.life-notebook .diary-three:after{bottom:-2.7cqw;font-size:1.6cqw;line-height:1.2}
+.life-notebook .diary-tape{left:22%;top:30.5%;width:19%;height:2.8%;transform:rotate(-4deg)}
+.life-notebook .diary-feature .zoom-hint{bottom:3px;right:3px}
+
 /* The strawberry portrait story: soft pink paper, window light, full portrait frames. */
 .portrait-page{background:#f3e7e7;color:#71544f}
 .portrait-page .page-meta{font-size:1.4cqw;letter-spacing:.2cqw}
