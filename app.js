@@ -4,7 +4,7 @@ const $ = (selector, root = document) => root.querySelector(selector);
 const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
 const icon = (name) => `<svg aria-hidden="true"><use href="#i-${name}"/></svg>`;
 const asset = (id, thumb = false) => `assets/${id}${thumb ? '-thumb' : ''}.jpg`;
-const chapterNames = {cover: '封面', nanjing: '南京 · 城市漫游', henan: '河南 · 山野来信', life: '生活 · 日常私语', birthday: '生日 · 闪耀时刻'};
+const chapterNames = {cover: '封面', nanjing: '南京 · 城市漫游', henan: '河南 · 山野来信', life: '生活 · 日常私语', birthday: '生日 · 闪耀时刻', portrait: '写真 · 草莓白日梦'};
 const photoInfo = [
   ['cover-01', '草莓与柔软的午后'],
   ['nanjing-01', '南京 · 夜色中的侧影'], ['nanjing-02', '南京 · 在书与光之间'],
@@ -18,7 +18,12 @@ const photoInfo = [
   ['life-03', '生活 · 枕边的一点小心情'], ['life-04', '生活 · 把开心比成双份'],
   ['birthday-01', '生日 · 今天，为自己盛装'], ['birthday-02', '生日 · 被花与温柔包围'],
   ['birthday-03', '生日 · 留住每一个表情'], ['birthday-04', '生日 · 烛光里的愿望'],
-  ['birthday-05', '生日 · 闪闪发光的自己'], ['birthday-06', '生日 · 把快乐剪成一卷胶片']
+  ['birthday-05', '生日 · 闪闪发光的自己'], ['birthday-06', '生日 · 把快乐剪成一卷胶片'],
+  ['portrait-01', '写真 · 窗边的一场草莓白日梦'], ['portrait-02', '写真 · 把甜蜜停在这一刻'],
+  ['portrait-03', '写真 · 碎花沙发上的柔软目光'], ['portrait-04', '写真 · 粉色的午后与小心情'],
+  ['portrait-05', '写真 · 草莓与发丝间的光'], ['portrait-06', '写真 · 慢下来，听窗外的风'],
+  ['portrait-07', '写真 · 低头拾起一点甜'], ['portrait-08', '写真 · 不赶时间的好天气'],
+  ['portrait-09', '写真 · 一口甜，一瞬间']
 ];
 const photos = photoInfo.map(([id, caption]) => ({id, caption, group: id.split('-')[0]}));
 const photoById = new Map(photos.map((photo) => [photo.id, photo]));
@@ -26,7 +31,8 @@ const chapters = [
   {num: '01', title: 'City poetry', cn: '南京 · 城市漫游', page: 2, photo: 'nanjing-04', range: '02 — 04'},
   {num: '02', title: 'Into the wild', cn: '河南 · 山野来信', page: 5, photo: 'henan-04', range: '05 — 07'},
   {num: '03', title: 'Soft hours', cn: '生活 · 日常私语', page: 8, photo: 'life-01', range: '08 — 09'},
-  {num: '04', title: 'Born to bloom', cn: '生日 · 闪耀时刻', page: 10, photo: 'birthday-01', range: '10 — 12'}
+  {num: '04', title: 'Born to bloom', cn: '生日 · 闪耀时刻', page: 10, photo: 'birthday-01', range: '10 — 12'},
+  {num: '05', title: 'Strawberry reverie', cn: '写真 · 草莓白日梦', page: 13, photo: 'portrait-01', range: '13 — 18'}
 ];
 
 function photograph(id, className, thumb = false) {
@@ -62,10 +68,18 @@ const pageDefinitions = [
   ['birthday-opener', '生日 / BORN TO BLOOM', () => `${photograph('birthday-01','full-bleed')}${shade}${meta('CHAPTER 04','BIRTHDAY / 生日')}<h2 class="birthday-title">Born to<br><em>bloom.</em></h2><span class="birthday-roundel">23</span><p class="birthday-sub">新的一岁。<br>继续热烈，继续闪耀。</p>${folio(10, 'THE CELEBRATION EDIT')}`],
   ['birthday-detail-page', '生日 / ALL THAT GLOWS', () => `${meta('BIRTHDAY / IN FULL BLOOM')}${photograph('birthday-02','birthday-detail-one')}${photograph('birthday-05','birthday-detail-two')}<h2 class="birthday-detail-heading">All that<br><em>glows.</em></h2><span class="birthday-spark">✧</span><p class="birthday-detail-cap">花，烛光，<br>漂亮的裙摆。<br><br>今天，<br>为自己盛装。</p>${folio(11, 'DRESS UP FOR YOURSELF')}`],
   ['birthday-film', '生日 / MAKE A WISH', () => `${meta('BIRTHDAY / THE CONTACT SHEET')}${photograph('birthday-04','birthday-wide')}${photograph('birthday-06','birthday-strip')}${photograph('birthday-03','birthday-selfies')}<h2 class="birthday-film-title">Make a wish.<br><em>Keep the feeling.</em></h2><div class="birthday-film-caption"><span>CANDLES OUT. HEART FULL.</span><span>把快乐，留得久一点。</span></div>${folio(12, 'A NIGHT TO REMEMBER')}`],
-  ['letter-page', '后记 / A NOTE TO MYSELF', () => `${meta('EDITOR’S LETTER','TO MYSELF')}<span class="letter-kicker">A NOTE TO MYSELF</span><h2 class="letter-title">Still<br><em>becoming.</em></h2><p class="letter-body">不必急着成为谁。<br>去喜欢，去感受，去记录。<br>让每一个普通的今天，<br>都有被认真收藏的理由。</p><span class="letter-signature">with love, LMR</span><button class="secret-note-button" data-secret>拆开一封给自己的信 ${icon('arrow')}</button><div class="secret-note" hidden><button data-secret-close aria-label="收起信件">×</button><span>✳</span><h3>Dear me,</h3><p>愿你始终有<br>取悦自己的勇气，<br>也有慢慢生长的自由。<br><br>你值得被爱，<br>也值得所有美好的发生。</p></div>${folio(13, 'THE STORY IS STILL UNFOLDING')}`],
-  ['archive-page', '影像档案 / PHOTO ARCHIVE', () => `${meta('THE PHOTO ARCHIVE',`${photos.length} FRAMES / ONE LIFE`)}<h2 class="archive-heading">Collected<br><em>moments.</em></h2><p class="archive-sub">每一格，都是生活的证据。点击重温。</p><div class="printed-archive">${photos.map(p => photograph(p.id,'',true)).join('')}</div><span class="archive-bottom">Little moments, real me.</span>${folio(14, 'KEEP WHAT MAKES YOU FEEL')}`],
-  ['back-cover', '封底 / THE STORY CONTINUES', () => `${photograph('nanjing-07','full-bleed')}${shade}${meta('THE PERSONAL ISSUE','VOL. 01')}<div class="back-logo">LMR</div><h2 class="back-quote">To be<br><em>continued.</em><span>故事未完，来日方长。</span></h2><button class="back-restart" data-goto="0">${icon('arrow')} 再 翻 一 遍</button>${folio(15, 'LITTLE MOMENTS. REAL ME.')}`]
+  ['portrait-opener portrait-page', '写真 / STRAWBERRY REVERIE', () => `${meta('CHAPTER 05', 'PORTRAITS / 写真')}${photograph('portrait-01','portrait-hero')}<div class="portrait-opening-copy"><span class="portrait-eyebrow">A SOFT AFTERNOON</span><h2>Strawberry<br><em>reverie.</em></h2><p>草 莓 白 日 梦</p></div><span class="portrait-issue">THE PORTRAIT SERIES / 01—09</span>${folio(13, 'WINDOW LIGHT / LITTLE DELIGHTS')}`],
+  ['portrait-pair portrait-page', '写真 / SOFT FOCUS', () => `${meta('PORTRAITS / SOFT FOCUS', 'THE PINK EDIT')}<h2 class="portrait-pair-title">Soft <em>focus.</em></h2>${photograph('portrait-03','portrait-pair-main')}${photograph('portrait-09','portrait-pair-detail')}<p class="portrait-pair-copy">把午后<br>调成柔光。<span>NO RUSH.<br>JUST THIS.</span></p><span class="portrait-frame-label">02 / A CLOSER LOOK</span>${folio(14, 'FLOWERS / LIGHT / A LITTLE PINK')}`],
+  ['portrait-tasting portrait-page', '写真 / A LITTLE SWEETNESS', () => `${meta('PORTRAITS / SMALL PLEASURES', 'STRAWBERRY SEASON')}${photograph('portrait-05','portrait-tasting-main')}${photograph('portrait-02','portrait-tasting-detail')}<span class="portrait-tasting-note">一点甜，<br>就很好。</span><h2 class="portrait-tasting-title">A little<br><em>sweetness.</em></h2>${folio(15, 'SWEET LITTLE NOTHING')}`],
+  ['portrait-slow portrait-page', '写真 / SLOW AFTERNOON', () => `${meta('PORTRAITS / TAKE YOUR TIME', 'AN AFTERNOON IN BLOOM')}${photograph('portrait-06','portrait-hero')}<h2 class="portrait-slow-title">The art of<br><em>slowing down.</em></h2><span class="portrait-single-caption">把时间，留给喜欢的事。</span>${folio(16, 'NOWHERE ELSE TO BE')}`],
+  ['portrait-pair portrait-pair-alt portrait-page', '写真 / IN A DAYDREAM', () => `${meta('PORTRAITS / IN A DAYDREAM', 'LITTLE MOMENTS')}<h2 class="portrait-pair-title">In a <em>daydream.</em></h2>${photograph('portrait-04','portrait-pair-main')}${photograph('portrait-07','portrait-pair-detail')}<p class="portrait-pair-copy">日光轻轻，<br>心情也轻轻。<span>A MOMENT<br>OF MY OWN.</span></p><span class="portrait-frame-label">05 / THE QUIET DETAILS</span>${folio(17, 'LET THE AFTERNOON LINGER')}`],
+  ['portrait-ending portrait-page', '写真 / SWEET NOTHING', () => `${meta('PORTRAITS / THE LAST FRAME', 'STILL IN A DAYDREAM')}${photograph('portrait-08','portrait-hero')}<h2 class="portrait-ending-title">Sweet<br><em>nothing.</em></h2><span class="portrait-single-caption">没有安排，也自有好时光。</span>${folio(18, 'STRAWBERRY REVERIE / FIN')}`],
+  ['letter-page', '后记 / A NOTE TO MYSELF', () => `${meta('EDITOR’S LETTER','TO MYSELF')}<span class="letter-kicker">A NOTE TO MYSELF</span><h2 class="letter-title">Still<br><em>becoming.</em></h2><p class="letter-body">不必急着成为谁。<br>去喜欢，去感受，去记录。<br>让每一个普通的今天，<br>都有被认真收藏的理由。</p><span class="letter-signature">with love, LMR</span><button class="secret-note-button" data-secret>拆开一封给自己的信 ${icon('arrow')}</button><div class="secret-note" hidden><button data-secret-close aria-label="收起信件">×</button><span>✳</span><h3>Dear me,</h3><p>愿你始终有<br>取悦自己的勇气，<br>也有慢慢生长的自由。<br><br>你值得被爱，<br>也值得所有美好的发生。</p></div>${folio(19, 'THE STORY IS STILL UNFOLDING')}`],
+  ...Array.from({length: Math.ceil(photos.length / 12)}, (_, part) => ['archive-page', `影像档案 / PHOTO ARCHIVE ${part + 1}`, () => `${meta('THE PHOTO ARCHIVE',`${part + 1} / ${Math.ceil(photos.length / 12)} · ${photos.length} FRAMES`)}<h2 class="archive-heading">Collected<br><em>moments.</em></h2><p class="archive-sub">每一格，都是生活的证据。点击重温。</p><div class="printed-archive">${photos.slice(part * 12, (part + 1) * 12).map(p => photograph(p.id,'',true)).join('')}</div><span class="archive-bottom">Little moments, real me.</span>${folio(20 + part, 'KEEP WHAT MAKES YOU FEEL')}`]),
+  ['back-cover', '封底 / THE STORY CONTINUES', () => `${photograph('nanjing-07','full-bleed')}${shade}${meta('THE PERSONAL ISSUE','VOL. 01')}<div class="back-logo">LMR</div><h2 class="back-quote">To be<br><em>continued.</em><span>故事未完，来日方长。</span></h2><button class="back-restart" data-goto="0">${icon('arrow')} 再 翻 一 遍</button>${folio(lastPage, 'LITTLE MOMENTS. REAL ME.')}`]
 ];
+const pageCount = pageDefinitions.length;
+const lastPage = pageCount - 1;
 
 const book = $('#book');
 const base = $('#page-base');
@@ -94,12 +108,12 @@ function paper(index) {
   const [className, label, content] = pageDefinitions[index];
   return `<article class="paper ${className}" data-page="${index}" aria-label="${index === 0 ? '封面' : `第 ${index} 页`}，${label}">${content()}</article>`;
 }
-function isSpread(index) {return !mobile && index > 0 && index < 15;}
+function isSpread(index) {return !mobile && index > 0 && index < lastPage;}
 function normalize(index) {
-  index = Math.max(0, Math.min(15, index));
-  return !mobile && index > 0 && index < 15 ? (index % 2 ? index : index - 1) : index;
+  index = Math.max(0, Math.min(lastPage, index));
+  return !mobile && index > 0 && index < lastPage ? (index % 2 ? index : index - 1) : index;
 }
-function stops() {return mobile ? Array.from({length:16},(_,i)=>i) : [0,1,3,5,7,9,11,13,15];}
+function stops() {return Array.from({length:pageCount},(_,i)=>i).filter(i=>mobile || i===0 || i===lastPage || i%2===1);}
 function visiblePages(index = currentPage) {return isSpread(index) ? [index,index+1] : [index];}
 function setBase(index) {
   base.innerHTML = visiblePages(index).map(paper).join('');
@@ -120,12 +134,12 @@ function fitBook() {
 }
 function pageLabel(index) {
   if (index === 0) return 'COVER';
-  if (index === 15) return 'BACK COVER';
+  if (index === lastPage) return 'BACK COVER';
   return visiblePages(index).map(p=>String(p).padStart(2,'0')).join(' — ');
 }
 function updateControls() {
   const positions = stops();
-  const first = currentPage === 0, last = currentPage === 15;
+  const first = currentPage === 0, last = currentPage === lastPage;
   $('#prev-button').disabled = first;
   $('#side-prev').disabled = first;
   $('#next-button').disabled = last;
@@ -133,10 +147,11 @@ function updateControls() {
   $('#next-button').setAttribute('aria-label', first ? '翻开杂志' : '下一页');
   $('#side-next').setAttribute('aria-label', first ? '翻开杂志' : '下一页');
   $('#page-number').textContent = pageLabel(currentPage);
+  $('#page-total').textContent = `${pageCount} PAGES`;
   const labels = visiblePages().map(i=>pageDefinitions[i][1]);
   $('#chapter-label').textContent = currentPage === 0 ? 'THE COVER / 封面' : labels.join('   ·   ');
   $('#stage-edition').textContent = currentPage === 0 ? 'PERSONAL EDITION — 01' : 'LITTLE MOMENTS, REAL ME.';
-  $('#progress-track').innerHTML = positions.map(p=>`<button class="progress-stop" data-goto="${p}" aria-label="${p===0?'封面':p===15?'封底':`跳转到第 ${p} 页`}" aria-current="${p===currentPage}"></button>`).join('');
+  $('#progress-track').innerHTML = positions.map(p=>`<button class="progress-stop" data-goto="${p}" aria-label="${p===0?'封面':p===lastPage?'封底':`跳转到第 ${p} 页`}" aria-current="${p===currentPage}"></button>`).join('');
   $('#reader-hint').innerHTML = mobile ? '左右滑动翻页 <b>·</b> 点击照片放大 <b>·</b> ♡ 收藏心动瞬间' : '点击箭头翻页 <b>·</b> 按 ← → 阅读 <b>·</b> 点击照片放大';
   $('#announcement').textContent = `当前阅读：${labels.join('，')}。${pageLabel(currentPage)}`;
 }
@@ -182,11 +197,11 @@ function turnTo(rawIndex, animate = true) {
   } else if (target === 0) {
     frontIndex = 1; backIndex = 0; className = 'backwards cover-backward';
     base.innerHTML = visiblePages(previous).map(paper).join('');
-  } else if (target === 15) {
-    frontIndex = 14; backIndex = 15; className = 'close-forward';
+  } else if (target === lastPage) {
+    frontIndex = lastPage-1; backIndex = lastPage; className = 'close-forward';
     base.innerHTML = visiblePages(previous).map(paper).join('');
-  } else if (previous === 15) {
-    frontIndex = 15; backIndex = 14; className = 'backwards back-cover-backward';
+  } else if (previous === lastPage) {
+    frontIndex = lastPage; backIndex = lastPage-1; className = 'backwards back-cover-backward';
   } else {
     frontIndex = forward ? previous+1 : previous;
     backIndex = forward ? target : target+1;
@@ -206,7 +221,7 @@ function movePage(direction) {
   if (next !== undefined) turnTo(next);
 }
 function preloadAround(index) {
-  const pages = [index,index+1,index+2].filter(i=>i<16);
+  const pages = [index,index+1,index+2].filter(i=>i<pageCount);
   const html = pages.map(i=>pageDefinitions[i][2]()).join('');
   const ids = [...html.matchAll(/data-photo="([a-z]+-\d+)"/g)].map(match=>match[1]);
   [...new Set(ids)].forEach(id=>{const img=new Image();img.src=asset(id);});
@@ -281,6 +296,7 @@ function playTurnSound() {
 }
 
 $('#chapter-list').innerHTML=chapters.map(c=>`<button class="chapter-card" data-goto="${c.page}"><img src="${asset(c.photo,true)}" alt="${c.cn}" loading="lazy"><span><span class="chapter-card-num">CHAPTER ${c.num} / P.${c.range}</span><strong>${c.title}</strong><small>${c.cn}</small></span></button>`).join('');
+$('.dialog-footnote').textContent = `${photos.length} 张照片 · ${chapters.length} 个章节 · 一本关于自己的书`;
 $('#prev-button').addEventListener('click',()=>movePage(-1));
 $('#top-tools-toggle').addEventListener('click',()=>setTools('top',!document.body.classList.contains('top-tools-open')));
 $('#bottom-tools-toggle').addEventListener('click',()=>setTools('bottom',!document.body.classList.contains('bottom-tools-open')));
@@ -357,7 +373,7 @@ document.addEventListener('keydown',event=>{
   if(event.key==='ArrowRight'||event.key==='PageDown'){event.preventDefault();movePage(1);}
   if(event.key==='ArrowLeft'||event.key==='PageUp'){event.preventDefault();movePage(-1);}
   if(event.key==='Home'){event.preventDefault();turnTo(0,false);}
-  if(event.key==='End'){event.preventDefault();turnTo(15,false);}
+  if(event.key==='End'){event.preventDefault();turnTo(lastPage,false);}
   if(event.key==='Escape'){
     setTools('top',false);
     setTools('bottom',false);
