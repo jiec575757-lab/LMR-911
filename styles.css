@@ -171,10 +171,11 @@ body.bottom-tools-open .reader-controls{transform:translateX(-50%);opacity:1;vis
 .printed-chapter{padding-top:1.2cqw}
 .printed-chapter strong{font-size:3.6cqw}
 .contents-foot{bottom:8.5%}
-.archive-heading{top:10%;font-size:9cqw}
-.archive-sub{top:26%;font-size:1.7cqw;letter-spacing:.2cqw}
-.printed-archive{top:32%;bottom:13%;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(4,minmax(0,1fr));gap:1.8cqw}
+.archive-heading{top:10%;font-size:6.8cqw;line-height:1.1;letter-spacing:-.25cqw}
+.archive-sub{top:17%;font-size:1.7cqw;letter-spacing:.2cqw}
+.printed-archive{top:22%;bottom:13%;grid-template-columns:repeat(6,minmax(0,1fr));grid-template-rows:repeat(6,minmax(0,1fr));gap:1cqw}
 .printed-archive .photo img{object-fit:contain}
+.archive-bottom{bottom:8.5%;font-size:3.5cqw}
 .progress-track{max-width:300px;justify-self:center;width:max-content;gap:6px}
 .progress-stop{width:12px;flex-shrink:0}
 @media(max-width:760px){
